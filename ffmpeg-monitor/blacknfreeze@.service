@@ -1,0 +1,18 @@
+[Unit]
+Description=Black & Freeze Monitor for %i
+After=network.target
+
+[Service]
+WorkingDirectory=/home/<user>/ott-monitor
+ExecStart=/bin/bash -c 'source /home/<user>/ott-monitor/venv/bin/activate && python ffmpeg-monitor/blacknfreeze_detect.py %i'
+
+Restart=always
+RestartSec=3
+User=<user>
+Environment=PATH=/home/.../venv/bin:/usr/bin
+
+StandardOutput=append:/var/log/blacknfreeze_%i.log
+StandardError=append:/var/log/blacknfreeze_%i.log
+
+[Install]
+WantedBy=multi-user.target

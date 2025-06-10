@@ -1,0 +1,75 @@
+# .gitignore
+
+# Byte-compiled / optimized / C files
+# ----------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+# Distribution / packaging
+# ----------------------------------------------------------------
+build/
+dist/
+downloads/
+eggs/
+*.egg-info/
+sdist/
+wheelhouse/
+*.egg
+MANIFEST
+
+
+# Virtual Environments
+# ----------------------------------------------------------------
+.venv/
+venv/
+ENV/
+env/
+.env/
+.env.*
+!/.env.example
+
+
+# Environment variables file with secrets
+# ----------------------------------------------------------------
+.env
+url_map.json
+channel.txt
+url.txt
+
+
+# PyInstaller
+# ----------------------------------------------------------------
+*.spec
+
+
+# Installer logs
+# ----------------------------------------------------------------
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# Unit test / coverage reports
+# ----------------------------------------------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+
+
+# IDE / Editor folders
+# ----------------------------------------------------------------
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+
+# OS-specific files
+# ----------------------------------------------------------------
+.DS_Store
+Thumbs.db
