@@ -1,7 +1,10 @@
-import json
-import os
 from dotenv import load_dotenv
+
+import os
+import json
+
 load_dotenv()
+
 def generate_url_map(channel_file: str, url_file: str, output_file: str):
     """
     Generates a URL map from channel names and URLs.
