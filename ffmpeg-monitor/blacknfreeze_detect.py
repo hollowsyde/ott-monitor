@@ -35,7 +35,7 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
             print(line)
 
             # Check for ts file reading
-            if "Opening" in line:
+            if "frame=" in line:
                 if normal_flag:
                     logger.normal_log(channel_name, datetime.now(timezone.utc))
                 else:
