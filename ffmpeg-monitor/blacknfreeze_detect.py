@@ -37,7 +37,7 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
             # Check for ts file reading
             if "frame=" in line:
                 if normal_flag:
-                    logger.normal_log(channel_name, datetime.now(timezone.utc))
+                    logger.normal_log(channel_name, datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%Y-%m-%d %H:%M:%S'))
                 else:
                     normal_flag = True
             
@@ -51,7 +51,7 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
                 logger.blank_log(
                     channel_name,
                     black_entry.get("black_duration", None),
-                    datetime.now(timezone.utc)
+                    datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%Y-%m-%d %H:%M:%S')
                 )
 
                 normal_flag = False
@@ -72,7 +72,7 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
                         logger.freeze_log(
                             channel_name,
                             freeze_entry.get("freeze_duration", None),
-                            datetime.now(timezone.utc)
+                            datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%Y-%m-%d %H:%M:%S')
                         )
 
                         freeze_entry = {}
