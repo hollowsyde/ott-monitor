@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
 import ffmpeg
+import os
 import re
 import subprocess
 import sys
@@ -10,7 +11,7 @@ from ott_utils import env_mapper
 from ott_utils.ott_logger import OTTLogger
 
 
-def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
+def fetch_stream_logs(stream_url, channel_name, blank_d, freeze_d, freeze_n, output_extension="log"):
 
     # Initialize the OTTLogger with the channel name and output file extension
     logger = OTTLogger(channel_name, file_extension=f".{output_extension}")
@@ -18,7 +19,7 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
     # Construct FFmpeg command for both black screen and freeze detection
     command = (
         ffmpeg.input(stream_url)
-        .output("pipe:", format="null", vf="blackdetect=d=5:pix_th=0.01,freezedetect=n=0.01:d=5", loglevel="info")
+        .output("pipe:", format="null", vf=f"blackdetect=d={blank_d}:pix_th=0.01,freezedetect=n={freeze_n}:d={freeze_d}", loglevel="info")
         .compile()
     )
 
@@ -97,6 +98,9 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
 
 if __name__ == "__main__":
     input_channel_name = sys.argv[1]
-    mapped_stream_url = env_mapper.get_url(input_channel_name)
-    fetch_stream_logs(mapped_stream_url, input_channel_name)
+    mapped_stream_url = os.getenv("URL")
+    blank_duration = os.getenv("BLANK_DURATION", "5")
+    freeze_duration = os.getenv("FREEZE_DURATION", "5")
+    freeze_noise_threshold = os.getenv("FREEZE_NOISE_THRESHOLD", "0.01")
+    fetch_stream_logs(mapped_stream_url, input_channel_name, blank_duration, freeze_duration, freeze_noise_threshold)
     

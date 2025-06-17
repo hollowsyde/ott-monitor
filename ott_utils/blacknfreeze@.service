@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/home/<user>/ott-monitor
+EnvironmentFile=/home/<user>/ott-monitor/.ott-configs/%i.conf
 ExecStart=/bin/bash -c 'source /home/<user>/ott-monitor/venv/bin/activate && python ffmpeg-monitor/blacknfreeze_detect.py %i'
 
 Restart=always

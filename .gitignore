@@ -38,6 +38,7 @@ env/
 url_map.json
 channel.txt
 url.txt
+.ott-configs
 
 
 # PyInstaller
