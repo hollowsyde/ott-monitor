@@ -38,7 +38,7 @@ def fetch_stream_logs(stream_url, channel_name, output_extension="txt"):
             # Check for ts file reading
             if "frame=" in line:
                 if normal_flag:
-                    logger.normal_log(channel_name, datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Jakarta")).strftime('%Y-%m-%d %H:%M:%S'))
+                    logger.normal_log(channel_name, datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Jakarta")).isoformat())
                 else:
                     normal_flag = True
             
