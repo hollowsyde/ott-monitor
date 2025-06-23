@@ -48,10 +48,11 @@ class OTTLogger:
         """A private helper method to write a consistently formatted log line."""
         try:
             # The format is the same regardless of file extension
-            log_line = f"{state.upper()},{channel_name},{duration},{timestamp}\n"
+            #csv_log_line = f"{state.upper()},{channel_name},{duration},{timestamp}\n"
+            json_log_line = f'{{"state": "{state.upper()}", "channel_name": "{channel_name}", "duration": "{duration}", "timestamp": "{timestamp}"}}\n'
             # Open in append mode ('a') to add to the file if it exists, or create it if not.
             with open(self.filename, 'a') as f:
-                f.write(log_line)
+                f.write(json_log_line)
         except IOError as e:
             print(f"Error writing to log file: {e}")
 
