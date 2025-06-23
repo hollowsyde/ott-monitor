@@ -53,7 +53,7 @@ def fetch_stream_logs(stream_url, channel_name, blank_d, freeze_d, freeze_n, out
                 logger.blank_log(
                     channel_name,
                     black_entry.get("black_duration", None),
-                    datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Jakarta")).strftime('%Y-%m-%d %H:%M:%S')
+                    datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Jakarta")).isoformat()
                 )
 
                 normal_flag = False
@@ -74,7 +74,7 @@ def fetch_stream_logs(stream_url, channel_name, blank_d, freeze_d, freeze_n, out
                         logger.freeze_log(
                             channel_name,
                             freeze_entry.get("freeze_duration", None),
-                            datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Jakarta")).strftime('%Y-%m-%d %H:%M:%S')
+                            datetime.now(timezone.utc).replace(tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Jakarta")).isoformat()
                         )
 
                         freeze_entry = {}
